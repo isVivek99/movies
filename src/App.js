@@ -10,19 +10,31 @@ function App() {
 
     const [movies, setMovies] = useState([]);
     const [term, setTerm] = useState('');
+   
     
     console.log(movies);
 
-    useEffect(()=>{
-         fetch(FEATURED_API)
-         .then((res)=>res.json())
-         .then((data)=>{
-             //console.log(data.results)
-            setMovies(data.results);
-         })     
+    useEffect(()=>{  
+        getMovies(FEATURED_API)   
     },[]);
 
+    const getMovies = (API) =>{
+        fetch(API)
+        .then((res)=>res.json())
+        .then((data)=>{
+            //console.log(data.results)
+           setMovies(data.results);
+        })
+    }
 
+    const onSubmitHandler = (e) => {
+
+        e.preventDefault();
+        if(term){
+            getMovies(SEARCH_API+term);
+            setTerm('');
+        }  
+    } 
 
 
     
@@ -30,7 +42,9 @@ function App() {
     return (
         <>
             <header>
-                <input 
+                <form type="submit" onSubmit={onSubmitHandler}>
+                    
+                    <input 
                     
                     className="search"
                     value={term}
@@ -38,9 +52,12 @@ function App() {
                     placeholder="search..."
                     onChange={e=>{setTerm(e.target.value)}}
                 />
+                </form>
+               
             </header>
             <div className="movie-container">
                 { movies.length>0 && movies.map(movie => (<Movie key={movie.id} {...movie}  />))}
+                {movies.length===0 && <div>No Data Available</div> }
             
             </div>
         </>    
