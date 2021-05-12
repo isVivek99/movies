@@ -1,7 +1,7 @@
 import React from 'react'
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import NotesIcon from '@material-ui/icons/Notes';
-import useState from 'react';
+import { useState,useEffect } from 'react';
 
 function Modal({ selectedImage, setSelectedImage, movieInfo }) {
 
@@ -17,20 +17,11 @@ function Modal({ selectedImage, setSelectedImage, movieInfo }) {
         }
     }
 
-    const clickHandler = (e) =>{
-        if(e.target.classList.contains("backdrop")){
-            setSelectedImage(null);
-        }
-    }
-
-    const notesClickHandler=()=>{
-        if(notes==="true"){
-            notes="false"
-        }else{
-            notes="true"
-        }
+    useEffect(()=>{
         console.log(notes);
-    }
+    },[notes])
+
+ 
         
     
 
@@ -63,11 +54,16 @@ function Modal({ selectedImage, setSelectedImage, movieInfo }) {
                             {movieInfo.mOverview}
                         </p><br/>
                         <span  className={`tag ${setClassName(movieInfo.mVote_average)}`}>{movieInfo.mVote_average}</span>
-                        <span onClick={notesClickHandler}><NotesIcon/></span>
-
-                        {!notes?
+                        <div>
+                        <span onClick={()=>{setNotes(!notes)}}><NotesIcon/></span>
+                        </div>
+                        
+                        <br/>
+                        {notes?
                         <input type="text" placeholder="enter notes"/>:
-                        <div></div>}    
+                        <div></div>
+                        
+                    }    
                     </div>
                 </div>  
             </div>
