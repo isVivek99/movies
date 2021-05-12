@@ -61,7 +61,7 @@ function Modal({ selectedImage, setSelectedImage, movieInfo }) {
                         <br/>
                         {notes?
                         <input type="text" placeholder="enter notes"/>:
-                        <div></div>
+                        null
                         
                     }    
                     </div>
