@@ -266,3 +266,23 @@ header{
     opacity: 1;
     right: 0;
   }
+
+  /* modal notes */
+textarea{
+    font-size: 1rem;
+    resize: none;
+    font-weight: bold;
+    border-radius: 0.5rem;
+}
+
+textarea:focus { 
+    outline: none ;
+    border-color: #719ECE;
+    box-shadow: 0 0 10px #719ECE;
+  
+    
+}
+textarea::-webkit-scrollbar{
+    display: none;
+
+}
