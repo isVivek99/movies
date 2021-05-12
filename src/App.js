@@ -1,18 +1,23 @@
 import React, {useEffect, useState} from 'react'
 import Movie from './movies/Movie'
+import Modal from './movies/Modal'
 
 function App() {
      //const APIKey = '9f27855f3a716c4b2b32bb4cf259ed66'
-    const moviesArr = ['1','2','3']
-    const IMG_API = 'https://image.tmdb.org/t/p/w1280/'
+    //const IMG_API = 'https://image.tmdb.org/t/p/w1280/'
+
     const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=9f27855f3a716c4b2b32bb4cf259ed66&query='
     const FEATURED_API = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=9f27855f3a716c4b2b32bb4cf259ed66&page=1'
 
     const [movies, setMovies] = useState([]);
     const [term, setTerm] = useState('');
+    const [selectedImage, setSelectedImage] = useState(null);
+   const [movieInfo, setMovieInfo] = useState(null);
    
     
-    console.log(movies);
+    useEffect(()=>{
+       // console.log(selectedImage);
+    },[selectedImage]);
 
     useEffect(()=>{  
         getMovies(FEATURED_API)   
@@ -22,7 +27,6 @@ function App() {
         fetch(API)
         .then((res)=>res.json())
         .then((data)=>{
-            //console.log(data.results)
            setMovies(data.results);
         })
     }
@@ -56,8 +60,13 @@ function App() {
                
             </header>
             <div className="movie-container">
-                { movies.length>0 && movies.map(movie => (<Movie key={movie.id} {...movie}  />))}
+                { movies.length>0 && movies.map(movie =>(
+                        <Movie key={movie.id} {...movie} setSelectedImage={setSelectedImage} setMovieInfo={setMovieInfo}  />
+                    ))}
+                {selectedImage && <div><Modal selectedImage={selectedImage} setSelectedImage={setSelectedImage} movieInfo={movieInfo} /></div> }       
+
                 {movies.length===0 && <div>No Data Available</div> }
+
             
             </div>
         </>    
