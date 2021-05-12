@@ -5,7 +5,7 @@ import useState from 'react';
 
 function Modal({ selectedImage, setSelectedImage, movieInfo }) {
 
-    let notes="true"
+    const[notes, setNotes] = useState(false);
 
     const setClassName  = (score) => {
         if(score<=5){
@@ -35,7 +35,7 @@ function Modal({ selectedImage, setSelectedImage, movieInfo }) {
     
 
     return (
-        <div className="backdrop"  onClick={clickHandler}>
+        <div className="backdrop"  onClick={()=>{setNotes(!notes)}}>
             <div className="modal">
                 
                 <div className="modal-img">
@@ -65,7 +65,7 @@ function Modal({ selectedImage, setSelectedImage, movieInfo }) {
                         <span  className={`tag ${setClassName(movieInfo.mVote_average)}`}>{movieInfo.mVote_average}</span>
                         <span onClick={notesClickHandler}><NotesIcon/></span>
 
-                        {notes==="true"?
+                        {!notes?
                         <input type="text" placeholder="enter notes"/>:
                         <div></div>}    
                     </div>
