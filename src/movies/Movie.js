@@ -1,7 +1,15 @@
-import React from 'react'
+import React,{ useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
 
 
-function Movie({ title, poster_path, overview, vote_average,setSelectedImage, setMovieInfo  }) {
+
+function Movie({ title, poster_path, overview, vote_average, release_date, setSelectedImage, setMovieInfo, id  }) {
+
+    const { addMovieToWatchList, watchlist } = useContext(GlobalContext);
+
+    let storedMovie = watchlist.find((o)=>(o.id===id))
+    const watchlistDisabled = storedMovie? true:false;
+    console.log(watchlist);
 
     
     let image_API_string='';
@@ -29,13 +37,29 @@ function Movie({ title, poster_path, overview, vote_average,setSelectedImage, se
     const updateInfoForModal = ( )=>{
 
         setSelectedImage(image_API_string)
-        const movieInfo = {
+       const movieInfo = {
             mTitle:title,
             mOverview:overview,
             mVote_average:vote_average,
+            mRelease_date:release_date
+            
         }
         setMovieInfo(movieInfo)
     }
+
+    const updateInfoForFav = ( )=>{
+        
+       const movieInfo = {
+            title:title,
+            overview:overview,
+            vote_average:vote_average,
+            release_date:release_date,
+            id:id
+        }
+        addMovieToWatchList(movieInfo)
+    }
+
+
 
     return (
         <div className="movie">
@@ -43,8 +67,15 @@ function Movie({ title, poster_path, overview, vote_average,setSelectedImage, se
              alt={title}
              onClick={updateInfoForModal}
             />
+            <div className="movie-favicon" onClick={updateInfoForFav}>
+                <button disabled={watchlistDisabled}>add favourate</button>             
+            </div>
+            
             <div className="movie-info">
-                <h3>{title}</h3>
+                <div className="movie-title-date">
+                    <h3>{title} </h3>
+                    <h4 style={{fontWeight:"lighter",color:"yellow"}}>{release_date ? release_date.substring(0,4):`- - - -`}</h4>
+                </div>
                 <span className={`tag ${setClassName(vote_average)}`}>{vote_average}</span>
             </div>
             <div     className="movie-overview">

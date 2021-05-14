@@ -28,6 +28,32 @@ body {
     box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.1);
 }
 
+.movie .movie-favicon > button{
+    
+    margin: 0.2rem 1rem;
+    border: none;
+    padding: 0.3rem;
+    border-radius: 0.5rem;
+    background-color:rgb(89, 209, 89);
+    color:#22254b;
+    font-weight: bold;
+}
+.movie .movie-favicon > button:hover{
+    background-color: #22254b;
+    color: rgb(89, 209, 89);
+    border: rgb(89, 209, 89) solid 1px;
+}
+
+
+.movie .movie-info .movie-title-date {
+    display: flex;
+    flex-direction: column;
+}
+.movie-title-date h3,h4{
+    margin-top: 0.1rem;
+    margin-bottom: 0.3rem;
+}
+
 .movie img {
     object-fit: cover;
     max-width: 100%;
@@ -139,8 +165,9 @@ header{
 
 
 
-.modal {   
-    margin: 1rem;
+.modal {
+       
+    margin: 2rem;
     border-radius: 1.2rem;
     box-shadow: 8px 10px 20px  rgba(0, 0, 0, 0.5);
     display: flex;
@@ -149,9 +176,10 @@ header{
     margin-top: 20vh;    
 }
 .modal .modal-img img {
+    flex:0.2;
     display: flex;
-    width: 70%;
-    height: 70%;
+    width: 90%;
+    height: 80%;
     overflow: hidden;
     border-top-left-radius: 1.2rem;
     border-bottom-left-radius: 1.2rem;

@@ -2,6 +2,7 @@ import React from 'react'
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
 
+
 import Notes from './Notes'
 
 function Modal({ selectedImage, setSelectedImage, movieInfo }) {
@@ -50,6 +51,7 @@ function Modal({ selectedImage, setSelectedImage, movieInfo }) {
                     </div>
                     <div className="modal-title">
                     <h2> {movieInfo.mTitle}</h2>
+                    <h3 style={{color:"yellow", fontWeight:"lighter"}}>{movieInfo.mRelease_date}</h3>
                     </div>
                     <div className="modal-overview">
                         <h3>Overview</h3>
