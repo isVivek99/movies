@@ -9,7 +9,7 @@ function Movie({ title, poster_path, overview, vote_average, release_date, setSe
 
     let storedMovie = watchlist.find((o)=>(o.id===id))
     const watchlistDisabled = storedMovie? true:false;
-    console.log(watchlist);
+    
 
     
     let image_API_string='';
@@ -48,27 +48,29 @@ function Movie({ title, poster_path, overview, vote_average, release_date, setSe
     }
 
     const updateInfoForFav = ( )=>{
-        
+
        const movieInfo = {
             title:title,
             overview:overview,
             vote_average:vote_average,
             release_date:release_date,
+            poster_path:poster_path,
             id:id
         }
         addMovieToWatchList(movieInfo)
+        console.log(movieInfo);
     }
 
 
 
     return (
         <div className="movie">
-            <img src = {setImageAPI(poster_path)}
-             alt={title}
-             onClick={updateInfoForModal}
-            />
-            <div className="movie-favicon" onClick={updateInfoForFav}>
-                <button disabled={watchlistDisabled}>add favourate</button>             
+            <div className="movie-favicon" onClick={updateInfoForFav}>  
+                <img src = {setImageAPI(poster_path)}
+                    alt={title}
+                onClick={updateInfoForModal}
+                />        
+                <button disabled={watchlistDisabled}>add favourite</button>
             </div>
             
             <div className="movie-info">
