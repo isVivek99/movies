@@ -11,6 +11,14 @@ export default (state, action) =>{
                 
             }
 
+        case "REMOVE_MOVIE_FROM_WATCHLIST":
+                
+            return{
+                ...state,
+                watchlist: state.watchlist.filter((movie)=>(movie.id !== action.payload))
+                //returning all abjects which dont have id===action.payload
+                }
+
         default:
             return state;
     }

@@ -1,5 +1,8 @@
 import React,{useContext} from 'react'
 import {GlobalContext} from '../context/GlobalState';
+import MovieControl from './MovieControl'
+import ClearIcon from '@material-ui/icons/Clear';
+import {useEffect} from 'react';
 function WatchList() {
 
     const {watchlist} = useContext(GlobalContext);
@@ -27,6 +30,8 @@ function WatchList() {
         }
     }
 
+        
+
     return (
         <div>
             {watchlist.length>0 ?
@@ -34,11 +39,13 @@ function WatchList() {
                 {watchlist.map((movie)=>(
                     <div className="movie-container-watchlist" key={movie.id}>
                     <div className="movie">
-                    <img src = {setImageAPI(movie.poster_path)}
-                     alt={movie.title}
-                    />
+                        <img src = {setImageAPI(movie.poster_path)}
+                         alt={movie.title}
+                        />
+                        <MovieControl  movie={movie} type={movie.type} />
                     <div className="movie-info">
                         <div className="movie-title-date">
+                             
                             <h3>{movie.title} </h3>
                             <h4 style={{fontWeight:"lighter",color:"yellow"}}>{movie.release_date ? movie.release_date.substring(0,4):`- - - -`}</h4>
                         </div>

@@ -55,7 +55,8 @@ function Movie({ title, poster_path, overview, vote_average, release_date, setSe
             vote_average:vote_average,
             release_date:release_date,
             poster_path:poster_path,
-            id:id
+            id:id,
+            type:"watchlist"
         }
         addMovieToWatchList(movieInfo)
         console.log(movieInfo);
@@ -65,12 +66,12 @@ function Movie({ title, poster_path, overview, vote_average, release_date, setSe
 
     return (
         <div className="movie">
-            <div className="movie-favicon" onClick={updateInfoForFav}>  
+            <div className="movie-favicon" >  
                 <img src = {setImageAPI(poster_path)}
                     alt={title}
                 onClick={updateInfoForModal}
                 />        
-                <button disabled={watchlistDisabled}>add favourite</button>
+                <button onClick={updateInfoForFav}disabled={watchlistDisabled}>add favourite</button>
             </div>
             
             <div className="movie-info">

@@ -76,6 +76,11 @@ header .header-nav-links li {
     color:#22254b;
     font-weight: bold;
 }
+.movie .movie-favicon > button:disabled{
+    pointer-events: none;
+    opacity: 0.5;
+}
+
 .movie .movie-favicon > button:hover{
     background-color: #22254b;
     color: rgb(89, 209, 89);
@@ -359,3 +364,33 @@ textarea::-webkit-scrollbar{
 .movie-container-watchlist{
     display: flex;
 }
+
+.card-control{
+    display: flex;
+    position: absolute;
+    top:2%;
+    left: 3%;
+}
+.card-control .ctrl-btn-one > button {    
+    border: 1px solid rgb(89, 209, 89);
+    padding: 0.3rem;
+    border-radius: 0.5rem;
+    background-color:rgb(89, 209, 89);
+    color:#22254b;
+    font-weight: bold;
+}
+.card-control .ctrl-btn-two{
+    color: gray;
+    font-weight: bolder;
+}
+
+.card-control .ctrl-btn-two:hover{
+    color: rgb(238, 79, 79);
+}
+.card-control .ctrl-btn-one > button:hover{
+    background-color: #22254b;
+    color: rgb(89, 209, 89);
+}
+
+
+

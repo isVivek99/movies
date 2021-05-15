@@ -3,9 +3,9 @@ import React from 'react'
 function Watched() {
     return (
         <div>
-            <h1>Watched</h1>
+            Watched
         </div>
     )
 }
 
-export default Watched;
+export default Watched
