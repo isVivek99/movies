@@ -23,11 +23,6 @@ function App() {
                     <Route path="/watchlist">
                         <WatchList />
                     </Route>
-                    
-                    <Route path="add">
-                        <Add />
-                    </Route>
-
                 </Switch>   
             </Router>
             </>    

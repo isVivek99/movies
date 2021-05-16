@@ -16,13 +16,11 @@ function Header() {
                         <li>
                             <Link to="/watchlist">Watchlist</Link>
                         </li>
-                        <li>
-                            <Link to="/add" >+ Add</Link>
-                        </li>
+                       
                     </ul>
 
                 </div>
-            </div>
+        
         </header>
     );
 }
