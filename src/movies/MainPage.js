@@ -19,59 +19,58 @@ function MainPage() {
     const [movies, setMovies] = useState([]);
     const [term, setTerm] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
-   const [movieInfo, setMovieInfo] = useState(null);
+    const [movieInfo, setMovieInfo] = useState(null);
 
-    useEffect(()=>{  
-        getMovies(FEATURED_API)   
-        
-    },[]);
-    const getMovies = (API) =>{
-        fetch(API)
-        .then((res)=>res.json())
-        .then((data)=>{
-            console.log(data.results)
-           setMovies(data.results);
-        })
-    }
-
-
-
-    const onSubmitHandler = (e) => {
-
-        e.preventDefault();
-        if(term){
-            //getMovies(SEARCH_API+term);
-            //setTerm('');
-            fetch(SEARCH_API+term)
+   
+    
+        useEffect(()=>{  
+            getMovies(FEATURED_API)   
+            
+        },[]);
+        const getMovies = (API) =>{
+            fetch(API)
             .then((res)=>res.json())
             .then((data)=>{
-                
-                setMovies(data.results);
-               setTerm('');
+                console.log(data.results)
+            setMovies(data.results);
             })
-        }  
-    } 
+        }
 
-    const onChangeHandler = (e) => {
-        setTerm(e.target.value);
-        console.log(term) ;
-        fetch(SEARCH_API+e.target.value)
-            .then((res)=>res.json())
-            .then((data)=>{
-                if(!data.errors){
+
+
+        const onSubmitHandler = (e) => {
+
+            e.preventDefault();
+            if(term){
+                //getMovies(SEARCH_API+term);
+                //setTerm('');
+                fetch(SEARCH_API+term)
+                .then((res)=>res.json())
+                .then((data)=>{
+                    
                     setMovies(data.results);
-                 //   setTerm('');
-                }else{
-                    setMovies([]);  
-                }
-            });
+                setTerm('');
+                })
+            }  
+        } 
+
+        const onChangeHandler = (e) => {
+            setTerm(e.target.value);
+            console.log(term) ;
+            fetch(SEARCH_API+e.target.value)
+                .then((res)=>res.json())
+                .then((data)=>{
+                    if(!data.errors){
+                        setMovies(data.results);
+                    //   setTerm('');
+                    }else{
+                        setMovies([]);  
+                    }
+                });
         }  
     
-    return (
-        <div>
-             <GlobalProvider>
-            <>
-                
+        return (
+            <>   
                 <header>
                     <form type="submit" onSubmit={onSubmitHandler}>
                         
@@ -98,9 +97,7 @@ function MainPage() {
                 
                 </div>
             </>    
-        </GlobalProvider>
-        </div>
-    )
-}
+        )
+    }
 
 export default MainPage
