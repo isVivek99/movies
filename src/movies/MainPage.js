@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Movie from './Movie'
-import WatchList from './WatchList'
-import Watched from './Watched'
 import Modal from './Modal'
-import { GlobalProvider } from '../context/GlobalState';
+
 
 
 
@@ -39,18 +37,22 @@ function MainPage() {
 
 
         const onSubmitHandler = (e) => {
-
             e.preventDefault();
-            if(term){
-                //getMovies(SEARCH_API+term);
-                //setTerm('');
-                fetch(SEARCH_API+term)
+            if(term.trim().length > 0){
+                const fetchResults=async()=>{
+                    const res=await fetch(SEARCH_API+term);
+                    const data=await res.json();
+                    setMovies(data.results);
+                }
+                setTerm('');
+                fetchResults();
+
+                /*fetch(SEARCH_API+term)
                 .then((res)=>res.json())
                 .then((data)=>{
-                    
-                    setMovies(data.results);
-                setTerm('');
-                })
+                setMovies(data.results);*/    
+            }else{
+                alert("atleast enter one word");
             }  
         } 
 
