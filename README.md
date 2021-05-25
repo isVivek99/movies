@@ -1,3 +1,15 @@
+##Features
+1. search movies
+2. see movie details on the modal
+3. add movies to watch list
+
+## Features yet to be added
+1. add movies to watched list 
+2. trending page
+3. user auth and seperate user instance
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
